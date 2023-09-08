@@ -8,13 +8,12 @@ import { useDrawACard } from 'src/hooks/useDrawACard';
 import { calculatePlayerPoints, endGame } from 'src/utils/helpers/blackjackHelper';
 
 function useReturnAndShuffleDeck(deckId: string) {
-    const returnCardsQuery = useReturnCardsToTheDeck(deckId);
-    const shuffleDeckQuery = useShuffleDeck(deckId);
-  
-    return {
-      returnCardsQuery,
-      shuffleDeckQuery,
-    };
+  const returnCardsQuery = useReturnCardsToTheDeck(deckId);
+  const shuffleDeckQuery = useShuffleDeck(deckId);
+  return {
+    returnCardsQuery,
+    shuffleDeckQuery,
+  };
 }
 
 type Winner = 'player' | 'house' | 'tie';
@@ -51,7 +50,7 @@ function useBlackjackGameLogic() {
     (resp: DrawResponse) => {
       const cards = [...playerCards, resp.cards[0]];
       setPlayerCards(cards);
-      if (calculatePlayerPoints(cards) > 21) {
+      if (calculatePlayerPoints(cards) >= 21) {
         const winner = endGame(playerCards, houseCards)
         setWinner(winner.winner)
       }
@@ -72,9 +71,9 @@ function useBlackjackGameLogic() {
     refetchDrawACard()
   }
 
-  const { data: drawACardData, isLoading: loadingDrawCard, refetch: refetchDrawACard } = useDrawACard(deckId, 4, drawCallback)
+  const { isLoading: loadingDrawCard, refetch: refetchDrawACard } = useDrawACard(deckId, 4, drawCallback)
 
-  const { data: userHit, isLoading: loadingHit, refetch: refetchHit } = useDrawACard(deckId, 1, hitCallback)
+  const { isLoading: loadingHit, refetch: refetchHit } = useDrawACard(deckId, 1, hitCallback)
 
 
   const hit = () => {
