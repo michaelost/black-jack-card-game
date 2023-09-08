@@ -50,7 +50,4 @@ npm start
 
 This will launch the game in your browser. Have fun playing Blackjack!
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
+![Image 1](assets/image1.jpg)
