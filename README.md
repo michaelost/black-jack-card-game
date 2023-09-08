@@ -50,4 +50,4 @@ npm start
 
 This will launch the game in your browser. Have fun playing Blackjack!
 
-![Image 1](assets/image1.jpg)
+![Image 1](assets/1.png)
